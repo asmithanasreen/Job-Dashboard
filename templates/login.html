@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Job Dashboard Login</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(
+-45deg,
+#667eea,
+#764ba2,
+#6dd5ed,
+#2193b0
+);
+background-size:400% 400%;
+animation:gradient 10s ease infinite;
+}
+
+@keyframes gradient{
+0%{
+background-position:0% 50%;
+}
+50%{
+background-position:100% 50%;
+}
+100%{
+background-position:0% 50%;
+}
+}
+
+.login-box{
+width:400px;
+padding:40px;
+border-radius:25px;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(15px);
+-webkit-backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,0.3);
+box-shadow:0 8px 32px rgba(0,0,0,0.25);
+text-align:center;
+color:white;
+}
+
+.logo{
+font-size:70px;
+margin-bottom:10px;
+}
+
+.login-box h1{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.login-box p{
+margin-bottom:25px;
+color:#f1f1f1;
+}
+
+.input-group{
+margin-bottom:15px;
+}
+
+input{
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:rgba(255,255,255,0.2);
+color:white;
+font-size:15px;
+outline:none;
+}
+
+input::placeholder{
+color:white;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:10px;
+border:none;
+border-radius:12px;
+background:linear-gradient(
+90deg,
+#00c6ff,
+#0072ff
+);
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:translateY(-3px);
+box-shadow:0 5px 15px rgba(0,114,255,.5);
+}
+
+.show-pass{
+margin-top:10px;
+font-size:14px;
+color:white;
+}
+
+#error{
+margin-top:15px;
+font-weight:bold;
+color:#ffe5e5;
+}
+
+.footer{
+margin-top:20px;
+font-size:13px;
+color:#eee;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<div class="logo">📊</div>
+
+<h1>Job Dashboard</h1>
+
+<p>
+Welcome Back!<br>
+Login to access your dashboard
+</p>
+
+<div class="input-group">
+
+<input
+type="text"
+id="username"
+placeholder="Enter Username">
+
+</div>
+
+<div class="input-group">
+
+<input
+type="password"
+id="password"
+placeholder="Enter Password">
+
+</div>
+
+<div class="show-pass">
+
+<input
+type="checkbox"
+style="width:auto;"
+onclick="showPassword()">
+
+Show Password
+
+</div>
+
+<button onclick="login()">
+
+🔐 Login
+
+</button>
+
+<p id="error"></p>
+
+<div class="footer">
+
+© 2026 Job Market Skill Demand Dashboard
+
+</div>
+
+</div>
+
+<script>
+
+function showPassword(){
+
+let pass =
+document.getElementById("password");
+
+if(pass.type==="password"){
+pass.type="text";
+}
+else{
+pass.type="password";
+}
+
+}
+
+function login(){
+
+let username =
+document.getElementById("username").value;
+
+let password =
+document.getElementById("password").value;
+
+if(
+username==="admin" &&
+password==="admin123"
+){
+
+window.location.href="/home";
+
+}
+else{
+
+document.getElementById("error")
+.innerHTML =
+"❌ Invalid Username or Password";
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>

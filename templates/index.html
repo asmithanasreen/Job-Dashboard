@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Job Market Skill Demand Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+    <h2>💼 Job Dashboard</h2>
+
+    <h3>Navigation</h3>
+
+    <ul>
+        <li onclick="showOverview()">🏠 Overview</li>
+        <li onclick="showSkills()">📊 Skills</li>
+        <li onclick="showJobs()">📋 Jobs</li>
+        <li onclick="showAbout()">ℹ️ About</li>
+    </ul>
+
+    <h3>Search Skill</h3>
+
+    <input
+        type="text"
+        id="searchSkill"
+        placeholder="Enter Skill (Python, SQL, AWS...)"
+        onkeyup="if(event.key==='Enter') searchSkill()">
+
+    <button onclick="searchSkill()">
+        🔍 Search
+    </button>
+
+    <button onclick="resetDashboard()">
+        🔄 Reset
+    </button>
+
+    <button onclick="logout()">
+        🚪 Logout
+    </button>
+
+    <p id="result"></p>
+
+    <hr style="margin:20px 0;">
+
+    <h3>Popular Skills</h3>
+
+    <ul>
+        <li>Python</li>
+        <li>SQL</li>
+        <li>Java</li>
+        <li>AWS</li>
+        <li>Power BI</li>
+        <li>Excel</li>
+        <li>Machine Learning</li>
+        <li>Data Analysis</li>
+    </ul>
+
+    <hr style="margin:20px 0;">
+
+    <h3>Dashboard Features</h3>
+
+    <ul>
+        <li onclick="showSkillAnalysis()">📊 Skill Analysis</li>
+        <li onclick="showCompanyHiring()">🏢 Company Hiring</li>
+        <li onclick="showJobTrends()">📈 Job Trends</li>
+        <li onclick="showSkillSearch()">🔍 Skill Search</li>
+        <li onclick="showJobListings()">📋 Job Listings</li>
+    </ul>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+    <!-- HERO SECTION -->
+
+    <div class="hero">
+
+        <h1>📈 Job Market Skill Demand Dashboard</h1>
+
+        <p>
+            Analyze job trends, top skills,
+            hiring companies and employment opportunities
+            through interactive visualizations.
+        </p>
+
+    </div>
+
+    <!-- KPI CARDS -->
+
+    <div class="cards">
+
+        <div class="card">
+            <h4>Total Jobs</h4>
+            <h2 id="totalJobs">0</h2>
+        </div>
+
+        <div class="card">
+            <h4>Unique Skills</h4>
+            <h2 id="uniqueSkills">0</h2>
+        </div>
+
+        <div class="card">
+            <h4>Companies</h4>
+            <h2 id="companies">0</h2>
+        </div>
+
+        <div class="card">
+            <h4>Avg Experience</h4>
+            <h2 id="avgExp">0</h2>
+        </div>
+
+    </div>
+
+    <!-- OVERVIEW -->
+
+    <div class="welcome-box">
+
+        <h2>🚀 Dashboard Overview</h2>
+
+        <p>
+            This dashboard provides insights into
+            job demand, skill trends, company hiring,
+            experience requirements and job categories.
+        </p>
+
+    </div>
+
+    <!-- CHARTS -->
+
+    <div class="grid">
+
+        <div class="chart-box">
+            <h3>Top Skills Demand</h3>
+            <canvas id="barChart"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <h3>Skills Distribution</h3>
+            <canvas id="pieChart"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <h3>Company Hiring</h3>
+            <canvas id="companyChart"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <h3>Experience Distribution</h3>
+            <canvas id="expChart"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <h3>Monthly Hiring Trend</h3>
+            <canvas id="trendChart"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <h3>Job Type Distribution</h3>
+            <canvas id="jobTypeChart"></canvas>
+        </div>
+
+    </div>
+
+    <!-- JOB TABLE -->
+
+    <div class="table-box">
+
+        <h3>Recent Jobs</h3>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Job Title</th>
+                    <th>Company</th>
+                    <th>Skill</th>
+                    <th>Experience</th>
+                    <th>Job Type</th>
+                </tr>
+            </thead>
+
+            <tbody id="jobsTable">
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- ABOUT -->
+
+    <div
+        id="aboutSection"
+        class="table-box"
+        style="display:none;">
+
+        <h2>About Dashboard</h2>
+
+        <br>
+
+        <p>
+            This dashboard analyzes job market demand,
+            top skills, hiring companies, experience levels
+            and job trends.
+        </p>
+
+        <br>
+
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Chart.js</li>
+            <li>PapaParse</li>
+            <li>CSV Dataset</li>
+        </ul>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

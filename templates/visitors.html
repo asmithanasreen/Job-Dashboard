@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Visitors Dashboard</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+background:#f4f6f9;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+margin-bottom:20px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+}
+
+th,td{
+padding:12px;
+border:1px solid #ddd;
+text-align:left;
+}
+
+th{
+background:#004aad;
+color:white;
+}
+
+</style>
+
+</head>
+<body>
+
+<h1>👥 Visitors Dashboard</h1>
+
+<div class="card">
+<h2>Total Visits: {{ total_visitors }}</h2>
+<h2>Unique Visitors: {{ unique_visitors }}</h2>
+</div>
+
+<table>
+
+<tr>
+<th>Time</th>
+<th>IP Address</th>
+<th>Page</th>
+<th>User</th>
+</tr>
+
+{% for log in logs %}
+
+<tr>
+<td>{{ log.time }}</td>
+<td>{{ log.ip }}</td>
+<td>{{ log.page }}</td>
+<td>{{ log.email }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>
